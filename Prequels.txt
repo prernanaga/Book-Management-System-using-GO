@@ -1,0 +1,68 @@
+Required:
+1. Database - MySQL
+2. GORM for database connection
+3. JSON Marshall and UnMarshalling
+4. Proper Project Structure
+5. Gorilla MUX
+-------------------------------
+Host: sql12.freesqldatabase.com
+Database name: sql12591209
+Database user: sql12591209
+Database password: XwkMEmlZKy
+Port number: 3306
+URL: jdbc:mysql://sql12.freesqldatabase.com:3306/sql12591209
+----------------------------------
+
+
+We will be having a project Structure:
+1. CMD (Main Controller)
+    > main.go
+2. PKG (All other packages and Function)
+    > config (configuration Files)
+        # app.go
+    > controller (Access Function for the program)
+        #book-controller
+            *GetBooks->/book/<-GET
+            *CreateBooks->/book/<-POST
+            *GetBooksbyID->/book/param<-GET
+            *UpdatingBooks->/book/params<-PUT
+            *DELETINGBooks->/book/param<-DELETE
+    > models (Structure for the data)
+        #book.go
+    > routes (URls and Routes)
+        #bookstore-routes
+    > utlis (Dependecies)
+        #utlis.go
+---------------------------------------
+FLOW CONTROL:
+Control starts with the Controller which has the routes, then it passes it over to the Models where we have the structure for the data. And from there the control will perform the operations with the database, and they are inside app.go in Config
+---------------------------------------
+
+3. How to start and from where?
+	> Firstly we would working on defining the routes, since it's a small process 
+	> after that we would be moving towards the configuration section to connect our database, 	> after that we would we create utils files
+	> Then we will be going to call functions in our main.go
+	> After this we would be writing all the stuffs of modeling our data
+	> And finally we would be doing our work on the controllers
+
+WORK AREA:
+1. DEFINING ROUTES:
+	I would be defining the routes for the the CRUD operations that we are going to perform
+	I'd be importing gorilla module, since we need it for routing. And we would be importing our Controllers, as we have defined the working there
+	> Creating routers for GET, POST, PUT and DELETE using the Functions available in Gorilla Modules
+
+2. Now Configuring the connecting with DB in app.go
+	> We would be importing our GORM package along with the MYSQL, driver package
+	> Initialize a variable that would be interacting, with all the other files as an instance of the original DB
+
+3. We need umMarhshalled data while we are working on the database, but the data we recieve will be in JSON format and we will have to decode it in order to use it
+
+	> We would be creating a func that will be UnMarshalling the JSON encoded data. We will have  a request in as our function parameter and a interface to pass on the body
+	> After this we will be first reading out the body of the JSON, and then Unmarshall it
+
+4. Now we would be working on the Models file that is structuring the data for the CRUD operations.
+	We will be importing our config files and our database files
+	> Implementing a function that defines the structure for the schema and also initializing the instance for DB, to connect it to the database.
+	> Along with this we will be creating all the related function like creation, getting books, getting book by ID and deleting a book
+
+5. Now we will be desiging the controls for the operations 
